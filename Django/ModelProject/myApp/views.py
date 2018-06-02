@@ -47,7 +47,7 @@ def stuserach(req):
     # stulist = Student.stuObj2.filter(sage__lt=30)
     # stulist = Student.stuObj2.filter(createTime__year=2018)
     # stulist = Student.stuObj2.filter(sname__contains="刘%")
-    #查找描述中含有刘德华三个字的学生属于哪个班级
+    #查找描述中含有刘德华三个字的学生属于哪个班级 123
     # grade = Grades.objects.filter(student__scontend__contains="刘德华")
 
     # from django.db.models import Max
