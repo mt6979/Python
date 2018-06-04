@@ -3,6 +3,7 @@ from .models import Student,Grades
 
 # Create your views here.
 from django.http import HttpResponse
+
 def index(request):
     # return HttpResponse("This is the mainpage of myApp!!!")
     return render(request,'myApp/myAppindex.html')
