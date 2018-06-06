@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>我的登录页面</title>
+</head>
+<body>
+<h1 style="color: mediumspringgreen">欢迎，{{username}}！！！</h1>
+<form action="/myApp/submit/" method="post">
+    姓名：<input type="text" value="" name="name">
+    <input type="submit">
+</form>
+<form action="/myApp/quit">
+    <input type="submit" value="退出登录。。。">
+</form>
+</body>
+</html>

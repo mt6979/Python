@@ -6,7 +6,8 @@ from django.http import HttpResponse
 
 def index(request):
     # return HttpResponse("This is the mainpage of myApp!!!")
-    return render(request,'myApp/myAppindex.html')
+    username = request.session.get("name","游客")
+    return render(request,'myApp/myAppindex.html',{'username':username})
 
 def news(req):
     return HttpResponse("News News News!!!")
@@ -59,3 +60,69 @@ def stuserach(req):
     # s = Student.stuObj2.filter(Q(sage=34))
     s = Student.stuObj2.filter(~Q(sage__gt=34))
     return HttpResponse(s.values())
+
+def attributes(req):
+    print(req.path)
+    print(req.method)
+    print(req.encoding)
+    print(req.GET)
+    print(req.POST)
+    print(req.FILES)
+    print(req.COOKIES)
+    print(req.session)
+    return HttpResponse("OOOOO")
+#http://127.0.0.1:8080/myApp/get1?a=565&b=%E5%88%98%E8%A1%8D%E8%81%AA
+def get1(req):
+    a = req.GET.get("a")
+    b = req.GET.get("b")
+    return HttpResponse("a = "+a+"  b = "+b)
+#django2 中不允许通过GET传递多个相同拥有相同键的值，后面的键的值会覆盖前面的键的值
+#djagn
+def get2(req):
+    a = req.GET.get("a")
+    a1 = a[0]
+    a2 = a[1]
+    b = req.GET.get("b")
+    return HttpResponse("a1 = "+a1+" a2 = "+a2+" b = "+b)
+
+def regist(req):
+    if req.method == "GET":
+        return render(req,"myApp/regist.html")
+    else:
+        name = req.POST.get("name")
+        age = req.POST.get("age")
+
+        return HttpResponse("你好！！"+name+"  "+age)
+
+def cookietest(req):
+    res = HttpResponse()
+    # cookie = req.COOKIES
+    # res.set_cookie("lyc","good")
+    # res.write("<h1>"++"</h1>")
+    return res
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
+def redirect1(req):
+    return redirect("/myApp/redirect2")
+
+def redirect2(req):
+    return HttpResponse("<h1>我是重定向的页面</h1>")
+
+def me(req):
+    username = req.session.get("name",'游客')
+    return render(req,'myApp/me.html',{'username':username})
+def submit(req):
+    username = req.POST.get("name")
+    req.session['name'] = username#不设置两个星期后过期
+    req.session.set_expiry(10)#10s之后过期
+    return redirect('/myApp/main')
+def main(req):
+    username = req.session.get("name","游客")
+    return HttpResponse("<h1>"+username+"</h1>")
+from django.contrib.auth import logout
+def quit(req):
+    # req.session['name'] = None
+    logout(req)
+    req.session.clear()
+    req.session.flush()
+    return HttpResponse('<h1 style="color: red">您已经成功退出了。。</h1>')
