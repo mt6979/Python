@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生信息查询</title>
+</head>
+<body>
+<a href="/myApp/goods/100/">硬连接</a>
+<a href="{% url 'app:good' 100%}">反向代理</a>
+
+{% for i in s_list %}
+    {% if forloop.counter|divisibleby:2 %}
+
+        <span style="color: red">偶数行：</span>
+    {% endif %}
+    <h2>姓名：{{ i.sname }}</h2>
+    <h2>年龄：{{ i.sage }}</h2>
+    {% if i.gender != 0 %}
+        <h2>性别：男</h2>
+        {% else %}
+        <h2>性别：女</h2>
+    {% endif %}
+    <h2>描述：{{ i.scontent }}</h2>
+    <hr>
+    {% empty %}
+    <h2>数据库中没有数据了</h2>
+{% endfor %}
+<h1>{{ s_list|join:'&'}}</h1>
+{# 注释：当这个值h1没有被传递进来，或者h1的值为FALSE，则填充default的值#}
+<h1>{{ h1|default:'没有'}}</h1>
+<h1>{{ num|add:-6 }}</h1>
+<h1>num/(1*5)= {% widthratio num 1 5 %}</h1>
+<h1>num/(10*1)= {% widthratio num 10 1 %}</h1>
+{% comment %}
+    这是多行注释
+{% endcomment %}
+{{ hh }}
+{{ hh|safe }}
+{% autoescape off %}
+{{ hh }}
+{{ hh }}
+{% endautoescape %}
+</body>
+</html>

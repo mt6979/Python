@@ -1,6 +1,7 @@
 from django.urls import path,include
 from django.conf.urls import url
 from .import views
+app_name='myApp'
 urlpatterns = [
 
     path('',views.index),
@@ -23,6 +24,16 @@ urlpatterns = [
     url(r'^submit/$',views.submit),
     url(r'^main/$',views.main),
     url(r'^quit/$',views.quit),
+    url(r'^s_list/$',views.s_list),
+    url(r'^goods/(\d+)/$',views.good,name='good'),
+    url(r'^qf/$',views.qf),
+    url(r'^qf1/$',views.qf1),
+    url(r'^verifycode/$',views.verifycode),
+    url(r'^dl/$',views.dl),
+    url(r'^dlcheck/$',views.dlcheck),
+    url(r'^upfile/$',views.upfile),
+    url(r'^savefile/$',views.savefile),
+
 
 
 ]

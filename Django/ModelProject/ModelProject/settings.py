@@ -44,14 +44,15 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'myApp.Middleware.myMiddleware.MyMiddle',
 ]
 
 ROOT_URLCONF = 'ModelProject.urls'
-
+MEDIA_ROOT=os.path.join(BASE_DIR,r'static\upfile\img')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -125,3 +126,39 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static')
+]
+#
+# SESSION_ENGINE = 'redis_sessions.session'
+# SESSION_REDIS_HOST = 'localhost'
+# SESSION_REDIS_PORT = 6379
+# SESSION_REDIS_DB = 0
+# SESSION_REDIS_PASSWORD = 'lyc'
+# SESSION_REDIS_PREFIX = 'session'
+
+# SESSION_ENGINE = 'redis_sessions.session'
+# SESSION_REDIS_HOST = 'localhost'
+# SESSION_REDIS_PORT = 6379
+# SESSION_REDIS_DB = 0
+# SESSION_REDIS_PASSWORD = 'lyc'
+# SESSION_REDIS_PREFIX = 'session'
+
+#配置redis  失败 存储session
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'redis_cache.RedisCache',
+#         'LOCATION': '127.0.0.1:6379',
+#         'OPTIONS': {
+#             'DB': 0,
+#             'PASSWORD': 'lyc',
+#             'PARSER_CLASS': 'redis.connection.HiredisParser',
+#            # 'PICKLE_VERSION': 2,
+#             #'CONNECTION_POOL_CLASS': 'redis.ConnectionPool',
+#             'SOCKET_TIMEOUT': 10,
+#             #'CONNECTION_POOL_CLASS_KWARGS': {
+#              #   'max_connections': 2,
+#            # }
+#         },
+#     },
+# }
