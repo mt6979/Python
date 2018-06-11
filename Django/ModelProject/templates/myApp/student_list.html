@@ -5,7 +5,27 @@
     <title>学生列表</title>
 </head>
 <body>
+<ul>
+    {% for stu in student %}
+    <li>
+        {{ stu.sname}}--{{stu.sgrade }}
+    </li>
+    {% endfor %}
+</ul>
+<ul>
+    {% for index in student.paginator.page_range %}
+        {% if index == student.number %}
+            <li style="display: inline-block">
+                <a href="/myApp/studentpage/{{ index }}" style="color: gold">{{ index }}</a>
+            </li>
+        {% else %}
+            <li style="display: inline-block">
+                <a href="/myApp/studentpage/{{ index }}">{{ index }}</a>
+            </li>
+        {% endif %}
 
+    {% endfor %}
+</ul>
 
 </body>
 </html>

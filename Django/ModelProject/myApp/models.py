@@ -54,3 +54,8 @@ class Student(models.Model):
         stu = cls(sname=name,sage=age,sgender=gender,scontend=content,sgrade= grade,lastTime=lastT,createTime=createT,isDelete=isDel)
         return stu
 
+from tinymce.models import HTMLField
+class Text(models.Model):
+    str = HTMLField()
+
+

@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^dlcheck/$',views.dlcheck),
     url(r'^upfile/$',views.upfile),
     url(r'^savefile/$',views.savefile),
+    url(r'^studentpage/(\d+)/$',views.studentpage),
 
 
 

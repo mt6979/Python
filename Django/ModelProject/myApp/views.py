@@ -225,5 +225,17 @@ def savefile(req):
         return HttpResponse('上传成功')
     else:
         return HttpResponse('上传失败')
+from .models import Student
+from django.core.paginator import Paginator
+def studentpage(req,pageid):
+    alllist = Student.stuObj2.all()
+    paginator = Paginator(alllist,2)
+    page = paginator.page(pageid)
+    for i in page:
+        print(i.sname)
+    return render(req,'myApp/student_list.html',{'student':page})
+
+
+
 
 
